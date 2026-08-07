@@ -24,12 +24,13 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-x: hidden;
     }
 
-    /* Contenitore ingrandito per la pagina singola */
+    /* Contenitore centrato per PAGINA SINGOLA */
     .container {
       width: 100%;
-      max-width: 650px;
+      max-width: 600px;
       height: 80vh;
       max-height: 850px;
       display: flex;
@@ -38,7 +39,8 @@
     }
 
     .flip-book {
-      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      margin: 0 auto;
     }
 
     /* Stile generale Pagine */
@@ -192,28 +194,6 @@
         <div class="page-footer">4</div>
       </div>
 
-      <!-- PAGINA 5 -->
-      <div class="page">
-        <div class="page-content">
-          <div class="photo-frame">
-            <span style="color:#888;">[ Inserisci qui la Foto 5 ]</span>
-          </div>
-          <div class="caption">Opera N. 5 - Titolo o Descrizione</div>
-        </div>
-        <div class="page-footer">5</div>
-      </div>
-
-      <!-- PAGINA 6 -->
-      <div class="page">
-        <div class="page-content">
-          <div class="photo-frame">
-            <span style="color:#888;">[ Inserisci qui la Foto 6 ]</span>
-          </div>
-          <div class="caption">Opera N. 6 - Titolo o Descrizione</div>
-        </div>
-        <div class="page-footer">6</div>
-      </div>
-
       <!-- COPERTINA FINALE -->
       <div class="page --cover">
         <h2>FINE</h2>
@@ -233,28 +213,32 @@
       const pageFlip = new St.PageFlip(
         document.getElementById('book'),
         {
-          width: 600,
-          height: 850,
-          size: "stretch",
-          minWidth: 280,
-          maxWidth: 700,
+          width: 550,
+          height: 780,
+          size: "fixed",             // Mantiene dimensione e proporzioni fisse per non ricalcolare 2 pagine
+          minWidth: 300,
+          maxWidth: 600,
           minHeight: 400,
-          maxHeight: 1000,
+          maxHeight: 850,
           maxShadowOpacity: 0.4,
-          showCover: false,
-          usePortrait: true,
-          startPage: 0,
-          drawShadow: true,
+          showCover: false,          // Impedisce l'apertura a libro affiancato
+          usePortrait: true,         // Forza la pagina singola
           mobileScrollSupport: false
         }
       );
 
       pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-      // Forza la modalità ritratto (singola pagina) a prescindere dalle dimensioni del browser
-      pageFlip.updateFromOrientationMatch = function() {
-        this.orientation = 'portrait';
-      };
+      // Sovrascrive la funzione che calcola la modalità orizzontale/doppia pagina
+      pageFlip.getSettings().usePortrait = true;
+      pageFlip.getSettings().showCover = false;
+
+      // Evento ad ogni cambio pagina per bloccare il ritorno a 2 pagine
+      pageFlip.on('flip', (e) => {
+        if (pageFlip.getOrientation() !== 'portrait') {
+          pageFlip.updateState({ orientation: 'portrait' });
+        }
+      });
 
       document.getElementById('btn-prev').addEventListener('click', () => {
         pageFlip.flipPrev();
