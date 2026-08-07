@@ -189,12 +189,25 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
-    const swiper = new Swiper(".mySwiper", {
-      effect: "cards",        // Effetto mazzo di carte 3D a pagina singola
-      grabCursor: true,      // Permette lo scorrimento trascinando col mouse o col dito
-      perSlideRotate: 2,     // Lieve inclinazione 3D
-      perSlideOffset: 8,     // Profondità tra le schede
-    });
+
+  const swiper = new Swiper(".mySwiper", {
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true
+    },
+  });
+
+
+
+
+
+    
+    #const swiper = new Swiper(".mySwiper", {
+    #  effect: "cards",        // Effetto mazzo di carte 3D a pagina singola
+    #  grabCursor: true,      // Permette lo scorrimento trascinando col mouse o col dito
+    #  perSlideRotate: 2,     // Lieve inclinazione 3D
+    #  perSlideOffset: 8,     // Profondità tra le schede
+    #});
 
     document.getElementById('btn-prev').addEventListener('click', () => {
       swiper.slidePrev();
