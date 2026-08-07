@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Album Fotografico - Portfolio</title>
+  <title>Album Fotografico - Pagina Singola</title>
   
-  <!-- StPageFlip CSS/JS da CDN -->
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
   <style>
@@ -16,7 +15,7 @@
     }
 
     body {
-      background-color: #1a1a1a;
+      background-color: #121212;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       min-height: 100vh;
@@ -24,44 +23,25 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow-x: hidden;
+      padding: 20px 0;
     }
 
-    header {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-weight: 300;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      color: #eaeaea;
-    }
-
-    p.subtitle {
-      font-size: 0.9rem;
-      color: #888;
-      margin-top: 5px;
-    }
-
-    /* Container del libro */
+    /* Container ingrandito (occupa fino al 90% della larghezza dello schermo) */
     .container {
-      width: 100%;
-      max-width: 1000px;
-      padding: 10px;
+      width: 90%;
+      max-width: 900px; /* Dimensione massima per la pagina singola */
+      height: 80vh;     /* Occupa l'80% dell'altezza dello schermo */
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     .flip-book {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      background-size: cover;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
     }
 
-    /* Stile delle Pagine */
+    /* Stile generale Pagine */
     .page {
-      padding: 20px;
       background-color: #fff;
       color: #222;
       border: 1px solid #ddd;
@@ -73,75 +53,82 @@
       position: relative;
     }
 
-    /* Copertina iniziale e finale */
+    /* COPERTINA PERSONALIZZABILE CON IMMAGINE */
     .page.--cover {
-      background-color: #111;
+      /* Decommenta e inserisci l'URL della tua foto di copertina: */
+      /* background-image: url('foto/copertina.jpg'); */
+      background-size: cover;
+      background-position: center;
+      background-color: #1a1a1a;
       color: #fff;
       border: none;
     }
 
     .page.--cover h2 {
-      font-size: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+      font-size: 2.5rem;
+      letter-spacing: 4px;
       border-bottom: 2px solid #00ffcc;
       padding-bottom: 10px;
     }
 
-    /* Immagini/Pagine Interne */
+    /* Contenuto Foto */
     .page-content {
       width: 100%;
       height: 100%;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
     }
 
-    .demo-box {
+    .photo-frame {
       width: 100%;
-      height: 80%;
-      background: #e5e5e5;
+      height: 85%;
+      background: #eee;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 4px;
-      font-size: 1.2rem;
-      color: #666;
-      border: 2px dashed #ccc;
+      overflow: hidden;
+    }
+
+    /* Se usi un'immagine reale dentro la pagina */
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Mantiene le proporzioni della foto senza tagliarla */
     }
 
     .caption {
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 10px;
-      text-align: center;
+      font-size: 1rem;
+      color: #444;
+      margin-top: 15px;
       font-style: italic;
     }
 
     .page-footer {
       position: absolute;
-      bottom: 10px;
-      font-size: 0.75rem;
-      color: #aaa;
+      bottom: 12px;
+      font-size: 0.8rem;
+      color: #999;
     }
 
-    /* Controlli di navigazione sotto al libro */
+    /* Controlli */
     .controls {
-      margin-top: 25px;
+      margin-top: 20px;
       display: flex;
-      gap: 15px;
-      align-items: center;
+      gap: 20px;
     }
 
     button {
-      background: #333;
+      background: #222;
       color: #fff;
-      border: 1px solid #555;
-      padding: 10px 20px;
-      border-radius: 20px;
+      border: 1px solid #444;
+      padding: 12px 25px;
+      border-radius: 25px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 1rem;
       transition: all 0.2s ease;
     }
 
@@ -154,25 +141,24 @@
 </head>
 <body>
 
-  <header>
-    <h1>IL MIO PORTFOLIO</h1>
-    <p class="subtitle">Clicca sugli angoli o usa i pulsanti per sfogliare</p>
-  </header>
-
   <div class="container">
     <div id="book" class="flip-book">
       
       <!-- COPERTINA -->
       <div class="page --cover" data-density="hard">
         <h2>PORTFOLIO</h2>
-        <p style="margin-top:20px; color:#aaa;">Opere & Fotografie</p>
+        <p style="margin-top:15px; color:#ccc;">Edizione Singola</p>
       </div>
 
       <!-- PAGINA 1 -->
       <div class="page">
         <div class="page-content">
-          <div class="demo-box">[ Foto 1 ]</div>
-          <div class="caption">Titolo dell'Opera N.1 (2026)</div>
+          <div class="photo-frame">
+            <!-- Sostituisci il testo qui sotto con il tag <img> della tua foto:
+            <img src="foto/opera1.jpg" alt="Opera 1"> -->
+            <span style="color:#888;">[ Inserisci qui la Foto 1 ]</span>
+          </div>
+          <div class="caption">Titolo dell'Opera N. 1</div>
         </div>
         <div class="page-footer">1</div>
       </div>
@@ -180,34 +166,17 @@
       <!-- PAGINA 2 -->
       <div class="page">
         <div class="page-content">
-          <div class="demo-box">[ Foto 2 ]</div>
-          <div class="caption">Titolo dell'Opera N.2</div>
+          <div class="photo-frame">
+            <span style="color:#888;">[ Inserisci qui la Foto 2 ]</span>
+          </div>
+          <div class="caption">Titolo dell'Opera N. 2</div>
         </div>
         <div class="page-footer">2</div>
-      </div>
-
-      <!-- PAGINA 3 -->
-      <div class="page">
-        <div class="page-content">
-          <div class="demo-box">[ Foto 3 ]</div>
-          <div class="caption">Titolo dell'Opera N.3</div>
-        </div>
-        <div class="page-footer">3</div>
-      </div>
-
-      <!-- PAGINA 4 -->
-      <div class="page">
-        <div class="page-content">
-          <div class="demo-box">[ Foto 4 ]</div>
-          <div class="caption">Titolo dell'Opera N.4</div>
-        </div>
-        <div class="page-footer">4</div>
       </div>
 
       <!-- COPERTINA FINALE -->
       <div class="page --cover" data-density="hard">
         <h2>FINE</h2>
-        <p style="margin-top:20px; color:#aaa;">Grazie per la visione</p>
       </div>
 
     </div>
@@ -223,23 +192,22 @@
       const pageFlip = new St.PageFlip(
         document.getElementById('book'),
         {
-          width: 400, // Larghezza singola pagina su desktop
-          height: 550, // Altezza singola pagina
-          size: "fixed",
-          minWidth: 280,
-          maxWidth: 500,
+          width: 600,         // Larghezza pagina singola
+          height: 850,        // Altezza pagina singola (proporzione verticale/album)
+          size: "stretch",    // L'album si adatta allo schermo del dispositivo
+          minWidth: 300,
+          maxWidth: 900,
           minHeight: 400,
-          maxHeight: 700,
-          maxShadowOpacity: 0.5,
+          maxHeight: 1200,
+          maxShadowOpacity: 0.6,
           showCover: true,
-          mobileScrollSupport: false // Abilita il tocco e lo sfoglio su smartphone
+          usePortrait: true,  // FORZA LA PAGINA SINGOLA SU TUTTI I DISPOSITIVI
+          mobileScrollSupport: false
         }
       );
 
-      // Carica il libro
       pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-      // Eventi pulsanti
       document.getElementById('btn-prev').addEventListener('click', () => {
         pageFlip.flipPrev();
       });
