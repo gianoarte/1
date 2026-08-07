@@ -192,16 +192,17 @@
       const pageFlip = new St.PageFlip(
         document.getElementById('book'),
         {
-          width: 600,         // Larghezza pagina singola
-          height: 850,        // Altezza pagina singola (proporzione verticale/album)
-          size: "stretch",    // L'album si adatta allo schermo del dispositivo
+          width: 650,                // Larghezza della singola pagina
+          height: 900,               // Altezza della singola pagina
+          size: "stretch",
           minWidth: 300,
           maxWidth: 900,
           minHeight: 400,
           maxHeight: 1200,
-          maxShadowOpacity: 0.6,
-          showCover: true,
-          usePortrait: true,  // FORZA LA PAGINA SINGOLA SU TUTTI I DISPOSITIVI
+          maxShadowOpacity: 0.5,
+          showCover: false,          // DISABILITA LA VISTA A LIBRO APERTO
+          usePortrait: true,         // FORZA LA PAGINA SINGOLA
+          showOnlyLandscape: false,  // IMPEDISCE DI MOSTRARE 2 PAGINE SU SCHERMI LARGH
           mobileScrollSupport: false
         }
       );
@@ -217,6 +218,3 @@
       });
     });
   </script>
-
-</body>
-</html>
