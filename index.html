@@ -23,14 +23,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
+      padding: 20px;
     }
 
-    /* Container ingrandito (occupa fino al 90% della larghezza dello schermo) */
+    /* Contenitore ingrandito per la pagina singola */
     .container {
-      width: 90%;
-      max-width: 900px; /* Dimensione massima per la pagina singola */
-      height: 80vh;     /* Occupa l'80% dell'altezza dello schermo */
+      width: 100%;
+      max-width: 650px;
+      height: 80vh;
+      max-height: 850px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -42,9 +43,9 @@
 
     /* Stile generale Pagine */
     .page {
-      background-color: #fff;
-      color: #222;
-      border: 1px solid #ddd;
+      background-color: #ffffff;
+      color: #222222;
+      border: 1px solid #dddddd;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -53,19 +54,16 @@
       position: relative;
     }
 
-    /* COPERTINA PERSONALIZZABILE CON IMMAGINE */
+    /* COPERTINA INIZIALE E FINALE */
     .page.--cover {
-      /* Decommenta e inserisci l'URL della tua foto di copertina: */
-      /* background-image: url('foto/copertina.jpg'); */
-      background-size: cover;
-      background-position: center;
       background-color: #1a1a1a;
-      color: #fff;
+      color: #ffffff;
       border: none;
+      text-align: center;
     }
 
     .page.--cover h2 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       letter-spacing: 4px;
       border-bottom: 2px solid #00ffcc;
       padding-bottom: 10px;
@@ -85,19 +83,19 @@
     .photo-frame {
       width: 100%;
       height: 85%;
-      background: #eee;
+      background: #f4f4f4;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 4px;
+      border: 1px dashed #ccc;
       overflow: hidden;
     }
 
-    /* Se usi un'immagine reale dentro la pagina */
     .photo-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Mantiene le proporzioni della foto senza tagliarla */
+      object-fit: contain;
     }
 
     .caption {
@@ -145,20 +143,18 @@
     <div id="book" class="flip-book">
       
       <!-- COPERTINA -->
-      <div class="page --cover" data-density="hard">
+      <div class="page --cover">
         <h2>PORTFOLIO</h2>
-        <p style="margin-top:15px; color:#ccc;">Edizione Singola</p>
+        <p style="margin-top:15px; color:#ccc;">Album Fotografico</p>
       </div>
 
       <!-- PAGINA 1 -->
       <div class="page">
         <div class="page-content">
           <div class="photo-frame">
-            <!-- Sostituisci il testo qui sotto con il tag <img> della tua foto:
-            <img src="foto/opera1.jpg" alt="Opera 1"> -->
             <span style="color:#888;">[ Inserisci qui la Foto 1 ]</span>
           </div>
-          <div class="caption">Titolo dell'Opera N. 1</div>
+          <div class="caption">Opera N. 1 - Titolo o Descrizione</div>
         </div>
         <div class="page-footer">1</div>
       </div>
@@ -169,14 +165,59 @@
           <div class="photo-frame">
             <span style="color:#888;">[ Inserisci qui la Foto 2 ]</span>
           </div>
-          <div class="caption">Titolo dell'Opera N. 2</div>
+          <div class="caption">Opera N. 2 - Titolo o Descrizione</div>
         </div>
         <div class="page-footer">2</div>
       </div>
 
+      <!-- PAGINA 3 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="photo-frame">
+            <span style="color:#888;">[ Inserisci qui la Foto 3 ]</span>
+          </div>
+          <div class="caption">Opera N. 3 - Titolo o Descrizione</div>
+        </div>
+        <div class="page-footer">3</div>
+      </div>
+
+      <!-- PAGINA 4 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="photo-frame">
+            <span style="color:#888;">[ Inserisci qui la Foto 4 ]</span>
+          </div>
+          <div class="caption">Opera N. 4 - Titolo o Descrizione</div>
+        </div>
+        <div class="page-footer">4</div>
+      </div>
+
+      <!-- PAGINA 5 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="photo-frame">
+            <span style="color:#888;">[ Inserisci qui la Foto 5 ]</span>
+          </div>
+          <div class="caption">Opera N. 5 - Titolo o Descrizione</div>
+        </div>
+        <div class="page-footer">5</div>
+      </div>
+
+      <!-- PAGINA 6 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="photo-frame">
+            <span style="color:#888;">[ Inserisci qui la Foto 6 ]</span>
+          </div>
+          <div class="caption">Opera N. 6 - Titolo o Descrizione</div>
+        </div>
+        <div class="page-footer">6</div>
+      </div>
+
       <!-- COPERTINA FINALE -->
-      <div class="page --cover" data-density="hard">
+      <div class="page --cover">
         <h2>FINE</h2>
+        <p style="margin-top:15px; color:#ccc;">Grazie per la visione</p>
       </div>
 
     </div>
@@ -192,22 +233,28 @@
       const pageFlip = new St.PageFlip(
         document.getElementById('book'),
         {
-          width: 650,                // Larghezza della singola pagina
-          height: 900,               // Altezza della singola pagina
+          width: 600,
+          height: 850,
           size: "stretch",
-          minWidth: 300,
-          maxWidth: 900,
+          minWidth: 280,
+          maxWidth: 700,
           minHeight: 400,
-          maxHeight: 1200,
-          maxShadowOpacity: 0.5,
-          showCover: false,          // DISABILITA LA VISTA A LIBRO APERTO
-          usePortrait: true,         // FORZA LA PAGINA SINGOLA
-          showOnlyLandscape: false,  // IMPEDISCE DI MOSTRARE 2 PAGINE SU SCHERMI LARGH
+          maxHeight: 1000,
+          maxShadowOpacity: 0.4,
+          showCover: false,
+          usePortrait: true,
+          startPage: 0,
+          drawShadow: true,
           mobileScrollSupport: false
         }
       );
 
       pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+      // Forza la modalità ritratto (singola pagina) a prescindere dalle dimensioni del browser
+      pageFlip.updateFromOrientationMatch = function() {
+        this.orientation = 'portrait';
+      };
 
       document.getElementById('btn-prev').addEventListener('click', () => {
         pageFlip.flipPrev();
@@ -218,3 +265,6 @@
       });
     });
   </script>
+
+</body>
+</html>
